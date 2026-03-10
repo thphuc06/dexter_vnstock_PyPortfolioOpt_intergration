@@ -1,0 +1,63 @@
+version: 1.0
+
+# ============================================================
+# AWS App Runner configuration for Dexter + VNStock container
+# ============================================================
+# Usage:
+#   1. Push image to ECR
+#   2. Create App Runner service pointing to ECR image
+#   3. App Runner picks this file up automatically if using source code
+#      OR configure manually in console for ECR-based deploy
+# ============================================================
+
+run:
+  # App Runner routes external traffic to this port
+  network:
+    port: 3000
+    env: DEXTER_SERVER_PORT
+
+  # Resource sizing:
+  #   - 1 vCPU / 2GB: minimum, may be slow for complex analysis
+  #   - 2 vCPU / 4GB: recommended (Chromium + vnstock + bun)
+  # Set via App Runner console → Service settings → Compute
+
+  # Environment variables that are safe to version-control.
+  # NEVER put real API keys here — use App Runner secret injection.
+  env:
+    # VNStock runs on localhost inside the same container
+    - name: VNSTOCK_API_URL
+      value: http://localhost:8050
+
+    # Dexter server port (must match network.port above)
+    - name: DEXTER_SERVER_PORT
+      value: "3000"
+
+    # Advisory tool settings (tune as needed)
+    - name: DEXTER_ADVISORY_PROVIDER_TIMEOUT_MS
+      value: "10000"
+    - name: DEXTER_ADVISORY_TIMEOUT_BUDGET_MS
+      value: "35000"
+    - name: DEXTER_ADVISORY_PROVIDER_RETRIES
+      value: "1"
+    - name: DEXTER_ADVISORY_MAX_SYMBOLS
+      value: "4"
+    - name: DEXTER_ADVISORY_GEMINI_NLG_ENABLED
+      value: "true"
+    - name: DEXTER_ADVISORY_GEMINI_NLG_MODEL
+      value: gemini-2.0-flash
+
+    # Python binary path inside the container
+    - name: DEXTER_ADVISORY_PYTHON_BIN
+      value: python3
+
+# ============================================================
+# Secrets to set via App Runner Console (NOT in this file):
+# ============================================================
+# GOOGLE_API_KEY          — Gemini LLM
+# OPENAI_API_KEY          — OpenAI LLM (optional)
+# ANTHROPIC_API_KEY       — Claude LLM (optional)
+# FINANCIAL_DATASETS_API_KEY
+# EXASEARCH_API_KEY       — Web search (optional)
+# TAVILY_API_KEY          — Web search fallback (optional)
+# LANGSMITH_API_KEY       — Tracing (optional)
+# ============================================================

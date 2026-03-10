@@ -1,0 +1,48 @@
+# ============================================================
+# .dockerignore — Exclude files not needed in the Docker image
+# ============================================================
+
+# Git metadata
+.git
+.gitignore
+
+# Node / Bun dependencies (reinstalled inside Docker)
+**/node_modules
+dexter/bun.lockb
+
+# Python virtual environments
+vnstock/venv
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Dexter runtime data (auto-generated, not part of source)
+dexter/.dexter/cache
+dexter/.dexter/gateway-debug.log
+dexter/.dexter/settings.json
+
+# Environment files (secrets must NOT be baked into image)
+dexter/.env
+.env
+
+# Editor & OS junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Playwright caches (reinstalled inside Docker)
+dexter/.playwright
+
+# Logs
+**/*.log
+
+# Test & dev artifacts
+dexter/src/evals/
+dexter/jest.config.js
+dexter/scripts/
+
+# Docs (not needed at runtime)
+*.md
+!README.md
