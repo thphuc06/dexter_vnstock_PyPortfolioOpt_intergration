@@ -7,32 +7,33 @@ version: 1.0
 # Flow: git push main → App Runner detect → build → deploy
 # ============================================================
 
-runtime: nodejs22
+runtime: python311
 
 build:
   commands:
     pre-build:
-      # Install Python dependencies (VNStock FastAPI + PyPortfolioOpt)
+      # Python + pip3 có sẵn trong python311 runtime
       - echo "=== Installing Python dependencies ==="
       - pip3 install -r vnstock/requirements.txt
       - pip3 install -r dexter/src/investment_advisor/python/requirements.txt
 
-      # Install Bun (not included in nodejs20 managed runtime)
+      # Cài Bun (không có sẵn trong python311 runtime)
       - echo "=== Installing Bun ==="
       - curl -fsSL https://bun.sh/install | bash
+      - export PATH="/root/.bun/bin:$HOME/.bun/bin:$PATH"
 
     build:
-      # Install Node/Bun dependencies for Dexter
       - echo "=== Installing Dexter dependencies ==="
       - export PATH="/root/.bun/bin:$HOME/.bun/bin:$PATH"
-      - cd dexter && bun install --frozen-lockfile
+      - cd dexter && /root/.bun/bin/bun install
 
-      # Install Playwright Chromium (for browser tool)
+      # Playwright Chromium (bỏ --with-deps vì managed runtime dùng yum không phải apt)
       - echo "=== Installing Playwright Chromium ==="
-      - cd dexter && bunx playwright install chromium
+      - cd dexter && /root/.bun/bin/bunx playwright install chromium
 
       # Make startup script executable
       - chmod +x start.sh
+
 
 run:
   # start.sh: khởi VNStock ở nền, sau đó khởi Dexter ở foreground
