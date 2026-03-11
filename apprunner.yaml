@@ -1,10 +1,9 @@
 version: 1.0
 
 # ============================================================
-# App Runner — Source Code Mode
-# App Runner tự build từ GitHub, không cần Docker/ECR
-# ============================================================
-# Flow: git push main → App Runner detect → build → deploy
+# App Runner — Source Code Mode (python311 runtime)
+# KEY FIX: install everything under /app so it survives
+# the build-stage → packaging-stage copy
 # ============================================================
 
 runtime: python311
@@ -12,31 +11,29 @@ runtime: python311
 build:
   commands:
     pre-build:
-      # Python + pip3 có sẵn trong python311 runtime
-      - echo "=== Installing Python dependencies ==="
-      - pip3 install -r vnstock/requirements.txt
-      - pip3 install -r dexter/src/investment_advisor/python/requirements.txt
+      # Python venv INSIDE /app → gets copied to runtime stage
+      - echo "=== Installing Python deps into /app/venv ==="
+      - python3 -m venv /app/venv
+      - /app/venv/bin/pip install --no-cache-dir -r vnstock/requirements.txt
+      - /app/venv/bin/pip install --no-cache-dir -r dexter/src/investment_advisor/python/requirements.txt
 
-      # Cài Bun (không có sẵn trong python311 runtime)
-      - echo "=== Installing Bun ==="
+      # Bun INSIDE /app → gets copied to runtime stage
+      - echo "=== Installing Bun into /app/.bun ==="
+      - export BUN_INSTALL="/app/.bun"
       - curl -fsSL https://bun.sh/install | bash
-      - export PATH="/root/.bun/bin:$HOME/.bun/bin:$PATH"
 
     build:
       - echo "=== Installing Dexter dependencies ==="
-      - export PATH="/root/.bun/bin:$HOME/.bun/bin:$PATH"
-      - cd dexter && /root/.bun/bin/bun install
+      - cd dexter && /app/.bun/bin/bun install
 
-      # Playwright Chromium (bỏ --with-deps vì managed runtime dùng yum không phải apt)
-      - echo "=== Installing Playwright Chromium ==="
-      - cd dexter && /root/.bun/bin/bunx playwright install chromium
+      # Playwright browsers INSIDE /app → gets copied to runtime stage
+      - echo "=== Installing Playwright Chromium into /app/.playwright ==="
+      - export PLAYWRIGHT_BROWSERS_PATH="/app/.playwright"
+      - cd dexter && /app/.bun/bin/bunx playwright install chromium
 
-      # Make startup script executable
       - chmod +x start.sh
 
-
 run:
-  # start.sh: khởi VNStock ở nền, sau đó khởi Dexter ở foreground
   command: bash start.sh
 
   network:
@@ -44,18 +41,21 @@ run:
     env: DEXTER_SERVER_PORT
 
   env:
-    # VNStock chạy cùng container, giao tiếp qua localhost
     - name: VNSTOCK_API_URL
       value: http://localhost:8050
 
     - name: DEXTER_SERVER_PORT
       value: "3000"
 
-    # Python binary trong managed runtime
+    # Use venv Python (not system Python)
     - name: DEXTER_ADVISORY_PYTHON_BIN
-      value: python3
+      value: /app/venv/bin/python3
 
-    # Advisory tool settings
+    # Playwright browsers path matches install path above
+    - name: PLAYWRIGHT_BROWSERS_PATH
+      value: /app/.playwright
+
+    # Advisory settings
     - name: DEXTER_ADVISORY_PROVIDER_TIMEOUT_MS
       value: "10000"
     - name: DEXTER_ADVISORY_TIMEOUT_BUDGET_MS
@@ -70,13 +70,6 @@ run:
       value: gemini-2.0-flash
 
 # ============================================================
-# Secrets — set qua App Runner Console (KHÔNG để ở đây):
-# ============================================================
-# GOOGLE_API_KEY
-# OPENAI_API_KEY (optional)
-# ANTHROPIC_API_KEY (optional)
-# FINANCIAL_DATASETS_API_KEY
-# EXASEARCH_API_KEY (optional)
-# TAVILY_API_KEY (optional)
-# LANGSMITH_API_KEY (optional)
+# Add via App Runner Console → Environment variables:
+# GOOGLE_API_KEY, FINANCIAL_DATASETS_API_KEY, etc.
 # ============================================================
