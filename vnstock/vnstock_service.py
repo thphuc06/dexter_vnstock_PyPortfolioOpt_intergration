@@ -11,6 +11,7 @@ import pandas as pd
 from vnstock import Vnstock
 from datetime import datetime, timedelta
 import time
+import asyncio
 
 # ---------------------------------------------------------------------------
 # Simple TTL in-memory cache
@@ -542,6 +543,63 @@ async def stock_screener(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Lỗi khi lọc cổ phiếu: {str(e)}")
+
+
+@app.get("/comprehensive_report/{ticker}")
+async def get_comprehensive_report(ticker: str, limit: int = Query(4, description="Giới hạn số kỳ báo cáo")):
+    """
+    Lấy báo cáo tổng hợp (Company Info, Financials, Balance Sheet, Income Statement)
+    
+    Params:
+        ticker: Mã cổ phiếu
+        limit: Số kỳ báo cáo trả về (mặc định: 4)
+    """
+    cache_key = f"comprehensive:{ticker.upper()}:{limit}"
+    cached = _cache_get(cache_key)
+    if cached is not None:
+        return cached
+
+    ticker = ticker.upper()
+    try:
+        results = await asyncio.gather(
+            get_company_info(ticker),
+            get_financial_ratios(ticker, limit),
+            get_balance_sheet(ticker, limit),
+            get_income_statement(ticker, limit),
+            return_exceptions=True
+        )
+
+        def handle_res(res):
+            if isinstance(res, HTTPException):
+                return {"error": res.detail}
+            elif isinstance(res, Exception):
+                return {"error": str(res)}
+            return res
+
+        profile_res = handle_res(results[0])
+        ratios_res = handle_res(results[1])
+        balance_res = handle_res(results[2])
+        income_res = handle_res(results[3])
+
+        def extract_data(res):
+            if res and isinstance(res, dict) and "data" in res:
+                return res["data"]
+            return res
+
+        response = {
+            "ticker": ticker,
+            "company_profile": profile_res,  # Contains 'data', 'source_provider', etc.
+            "financial_ratios": extract_data(ratios_res),
+            "balance_sheet": extract_data(balance_res),
+            "income_statement": extract_data(income_res),
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        _cache_set(cache_key, response, ttl=120)
+        return response
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Lỗi khi lấy báo cáo tổng hợp: {str(e)}")
 
 
 if __name__ == "__main__":

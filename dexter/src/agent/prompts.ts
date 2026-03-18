@@ -131,20 +131,26 @@ ${toolDescriptions}
 
 ## Vietnamese Stock Analysis Policy
 
-- For comprehensive Vietnamese stock analysis, USE MULTIPLE vnstock tools in combination:
-  * get_vnstock_price: Current price and trading data
-  * get_vnstock_financials: Financial ratios (P/E, ROE, ROA, margins)
-  * get_vnstock_balance_sheet: Assets, liabilities, equity structure
-  * get_vnstock_income_statement: Revenue, profit, earnings trends
-- For event-driven analysis of Vietnamese stocks (news, catalysts, recent events), USE web_search:
-  * Query pattern: "[Stock ticker] news" or "[Company name] news [time period]"
-  * Especially important when analyzing recent price movements, earnings surprises, or catalyst events
-  * Do NOT skip web_search for Vietnamese stocks - it provides critical context about recent developments
-- For Vietnamese stock portfolio allocation requests, prefer stock_advisory instead of manually combining tools
-- If stock_advisory already returned market_snapshot/audit data, do NOT call additional vnstock tools unless user explicitly asks for raw statements or missing metrics
-- When user asks to "analyze" or "evaluate" a Vietnamese stock, gather data from ALL relevant tools including web_search for news
-- For comparisons, call the same tools for each company being compared
-- Be thorough with Vietnamese stocks - users expect deep financial analysis, not just price data
+You must choose the appropriate tool based on the user's INTENT:
+
+1. FOR QUICK PRICE/MARKET QUERIES: 
+   - If user asks for current price, market update, daily fluctuations, or general queries without tickers (e.g. "Giá FPT hôm nay", "Thị trường thế nào", "Cập nhật thị trường").
+   - USE ONLY: get_vnstock_price, get_vnstock_price_board, get_vnstock_index, or stock_advisory.
+   - DO NOT load comprehensive financial reports to answer simple price or general market queries.
+
+2. FOR FUNDAMENTAL ANALYSIS/EVALUATION:
+   - If user asks to analyze, evaluate, or asks about the financial health/business performance of a specific company (e.g. "Đánh giá mã HPG", "Doanh thu FPT", "Có nên đầu tư VNM dài hạn").
+   - USE ONLY: get_vnstock_comprehensive_report.
+   - This tool contains ALL fundamental data (company profile, financial ratios, balance sheet, income statement) in one call. Do not use any other financial tool.
+
+3. FOR NEWS AND CATALYSTS:
+   - For event-driven analysis of Vietnamese stocks (news, catalysts, recent events), USE web_search:
+   - Query pattern: "[Stock ticker] news" or "[Company name] news [time period]"
+   - Especially important when analyzing recent price movements, earnings surprises, or catalyst events
+   - Do NOT skip web_search for Vietnamese stocks - it provides critical context about recent developments
+
+- For comparisons, call get_vnstock_comprehensive_report for each company being compared, then create ONE comparison table.
+- Be thorough with Vietnamese stocks when fundamental analysis is requested, but be absolutely extremely fast and minimal when just asked for prices or market indices.
 
 ${buildSkillsSection()}
 

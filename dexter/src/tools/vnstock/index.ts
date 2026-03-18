@@ -7,13 +7,10 @@ export {
 } from './price.js';
 
 export {
-  getVnstockFinancials,
-  getVnstockBalanceSheet,
-  getVnstockIncomeStatement,
+  getVnstockComprehensiveReport,
 } from './financials.js';
 
 export {
-  getVnstockCompany,
   getVnstockIndex,
   getVnstockGold,
   getVnstockScreener,

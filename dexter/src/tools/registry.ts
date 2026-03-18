@@ -11,10 +11,7 @@ import {
   getVnstockPrice,
   getVnstockHistory,
   getVnstockPriceBoard,
-  getVnstockFinancials,
-  getVnstockBalanceSheet,
-  getVnstockIncomeStatement,
-  getVnstockCompany,
+  getVnstockComprehensiveReport,
   getVnstockIndex,
   getVnstockGold,
   getVnstockScreener,
@@ -25,10 +22,11 @@ import {
   VNSTOCK_PRICE_DESCRIPTION,
   VNSTOCK_HISTORY_DESCRIPTION,
   VNSTOCK_PRICE_BOARD_DESCRIPTION,
-  VNSTOCK_FINANCIALS_DESCRIPTION,
-  VNSTOCK_BALANCE_SHEET_DESCRIPTION,
-  VNSTOCK_INCOME_STATEMENT_DESCRIPTION,
-  VNSTOCK_COMPANY_DESCRIPTION,
+} from './descriptions/index.js';
+import {
+  VNSTOCK_COMPREHENSIVE_DESCRIPTION,
+} from './descriptions/index.js';
+import {
   VNSTOCK_INDEX_DESCRIPTION,
   VNSTOCK_GOLD_DESCRIPTION,
   VNSTOCK_SCREENER_DESCRIPTION,
@@ -135,24 +133,9 @@ export function getToolRegistry(model: string): RegisteredTool[] {
       description: VNSTOCK_PRICE_BOARD_DESCRIPTION,
     },
     {
-      name: 'get_vnstock_financials',
-      tool: getVnstockFinancials,
-      description: VNSTOCK_FINANCIALS_DESCRIPTION,
-    },
-    {
-      name: 'get_vnstock_balance_sheet',
-      tool: getVnstockBalanceSheet,
-      description: VNSTOCK_BALANCE_SHEET_DESCRIPTION,
-    },
-    {
-      name: 'get_vnstock_income_statement',
-      tool: getVnstockIncomeStatement,
-      description: VNSTOCK_INCOME_STATEMENT_DESCRIPTION,
-    },
-    {
-      name: 'get_vnstock_company',
-      tool: getVnstockCompany,
-      description: VNSTOCK_COMPANY_DESCRIPTION,
+      name: 'get_vnstock_comprehensive_report',
+      tool: getVnstockComprehensiveReport,
+      description: VNSTOCK_COMPREHENSIVE_DESCRIPTION,
     },
     {
       name: 'get_vnstock_index',

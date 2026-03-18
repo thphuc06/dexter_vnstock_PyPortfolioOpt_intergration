@@ -121,6 +121,7 @@ const MODEL_FACTORIES: Record<string, ModelFactory> = {
     new ChatBedrockConverse({
       model: name.replace(/^bedrock:/, ''),
       region: process.env.BEDROCK_AWS_REGION ?? process.env.AWS_REGION ?? 'us-east-1',
+      maxRetries: 5,
       ...(process.env.BEDROCK_AWS_ACCESS_KEY_ID
         ? {
           credentials: {

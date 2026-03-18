@@ -1,42 +1,84 @@
-﻿## Cập nhật thị trường chứng khoán Việt Nam ngày 17/3/2026
+﻿# Phân tích cổ phiếu FPT và chiến lược đầu tư dài hạn
 
-**VN-Index hồi phục mạnh sau 3 phiên giảm liên tiếp**
+## Tình hình tài chính 2025
 
-VN-Index đã có phiên hồi phục tích cực, **tăng 17,08 điểm (+1,01%)** lên **1.710,29 điểm**, lấy lại mốc 1.700 điểm sau chuỗi 3 phiên điều chỉnh. Các chỉ số khác cũng ghi nhận mức tăng tích cực:
-- HNX-Index: **+1,12 điểm (+0,46%)** lên 246,86 điểm
-- UPCoM-Index: **+0,47 điểm (+0,38%)** lên 125,51 điểm  
-- VN30-Index: **+20,66 điểm (+1,11%)** lên 1.873,65 điểm
+FPT vừa công bố kết quả kinh doanh năm 2025 ấn tượng:
 
-**Diễn biến thị trường:**
-- **365 mã tăng giá** vs 293 mã giảm giá
-- **34 mã tăng trần** và 23 mã giảm sàn
-- Thanh khoản HOSE đạt **27.600 tỷ đồng** với hơn 1 tỷ cổ phiếu được giao dịch
+| Chỉ tiêu | 2025 | Tăng trưởng |
+|----------|------|-------------|
+| Doanh thu | 70.113 tỷ VNĐ | +11,6% |
+| LNTT | 13.039 tỷ VNĐ | +17,8% |
+| LNST công ty mẹ | 9.369 tỷ VNĐ | +19,3% |
+| EPS | 5.211 VNĐ/CP | +21,4% |
 
-**Nhóm dẫn dắt thị trường:**
+## Điểm mạnh và xu hướng tích cực
 
-**Chứng khoán bùng nổ:**
-- VCK tăng trần **+6,89%** lên 35.700 đồng - mức cao nhất lịch sử
-- VIX **+4,32%**, SSI **+0,88%**, VCI **+0,81%**
-- TCX tăng trần lên 54.200 đồng
+**1. Đa dạng hóa doanh thu theo lĩnh vực:**
+- **Công nghệ (63% doanh thu):** 44.475 tỷ VNĐ (+13,7%)
+- **Viễn thông:** 18.702 tỷ VNĐ (+10,6%) với LNTT tăng mạnh 21,9%
+- **Giáo dục:** 7.009 tỷ VNĐ (điều chỉnh nhẹ -1,1%)
 
-**Ngân hàng hỗ trợ mạnh:**
-- VCB **+2,89%** (đóng góp 3,08 điểm cho VN-Index)
-- STB **+1,5%**, TCB **+0,33%**, HDB **+0,39%**, CTG **+0,73%**
+**2. Thành công trên thị trường quốc tế:**
+- Doanh thu nước ngoài lần đầu vượt **1,5 tỷ USD**
+- Thắng thầu **26 dự án lớn** (>10 triệu USD/dự án), gấp đôi năm trước
+- **Thị trường Nhật Bản** bứt phá với tăng trưởng 25,4%
+- Ký hợp đồng kỷ lục **256 triệu USD** với tập đoàn năng lượng châu Á
 
-**Bán lẻ & tiêu dùng:**
-- MWG **+2,61%**, MSN **+2,59%**, MCH tăng trần **+6,94%**
+**3. Chuyển đổi mạnh mẽ sang AI:**
+- Đưa vào vận hành **AI Factory** tại Việt Nam và Nhật Bản (top 40 siêu máy tính thế giới)
+- Ra mắt hệ sinh thái AI toàn diện **FleziPT**
+- Doanh thu chuyển đổi số tăng 16,8% nhờ AI, Cloud, Data Analytics
 
-**Điểm trừ - Dầu khí tiếp tục lao dốc:**
-- BSR giảm **-6,87%** (gây áp lực lớn nhất lên VN-Index)
-- PVD **-6,72%**, PVT **-3,73%**, PLX **-2,25%**
+## Các chỉ số tài chính quan trọng (Q4/2025)
 
-**Sự kiện đáng chú ý:**
-- **DGC giảm kịch sàn** xuống 68.800 đồng sau tin Chủ tịch HĐQT Đào Hữu Huyền bị khởi tố
-- **VCK được thêm vào rổ MVIS Vietnam Local Index** của quỹ VanEck Vietnam ETF, dự kiến được mua 11,6 triệu cổ phiếu
+| Chỉ tiêu | Giá trị | Đánh giá |
+|----------|---------|----------|
+| P/E | 14,4x | Hấp dẫn so với ngành |
+| P/B | 3,7x | Hợp lý |
+| ROE | 28,3% | Rất tốt |
+| ROA | 11,7% | Tốt |
+| Tỷ lệ thanh toán hiện tại | 1,40x | An toàn |
 
-**Dòng tiền nước ngoài:**
-- Khối ngoại **bán ròng 689 tỷ đồng**
-- VIC bị bán ròng mạnh nhất **989 tỷ đồng**
-- VCK được mua ròng **287 tỷ đồng**, MCH được mua ròng **215 tỷ đồng**
+## Rủi ro cần lưu ý
 
-Thị trường cho thấy dấu hiệu hồi phục tích cực với sự dẫn dắt của nhóm chứng khoán và ngân hàng, mặc dù nhóm dầu khí vẫn chịu áp lực bán mạnh sau đợt tăng nóng đầu tháng 3.
+1. **Tỷ lệ nợ tăng:** Nợ vay tăng 41% lên 21.000 tỷ VNĐ, tuy vẫn ở mức an toàn
+2. **Phụ thuộc thị trường ngoại:** 63% doanh thu từ mảng công nghệ, chủ yếu xuất khẩu
+3. **Biên lợi nhuận gộp giảm nhẹ:** Từ 38,7% xuống 37,9%
+4. **Cạnh tranh gay gắt** trong lĩnh vực AI và chuyển đổi số
+
+## Chiến lược đầu tư dài hạn
+
+### ✅ **KHUYẾN NGHỊ: MUA VÀ NẮM GIỮ DÀI HẠN**
+
+**Lý do đầu tư:**
+
+**1. Định vị chiến lược trong làn sóng AI**
+- FPT đã chuyển mình thành công từ công ty outsourcing truyền thống sang "AI-First Company"
+- Sở hữu AI Factory và nền tảng FleziPT độc quyền
+- Đối tác chiến lược với NVIDIA, Microsoft, SAP
+
+**2. Mô hình kinh doanh đa dạng và bền vững**
+- Ba trụ cột: Công nghệ, Viễn thông, Giáo dục
+- Thu nhập định kỳ từ dịch vụ, không chỉ phụ thuộc dự án
+- Hệ sinh thái Made-by-FPT tăng trưởng mạnh 19,1%
+
+**3. Mở rộng toàn cầu có chiến lược**
+- Hiện diện 30+ quốc gia
+- M&A thông minh tại Đức, Malaysia, Nhật, Hàn Quốc
+- Quan hệ đối tác với Chelsea FC, Airbus củng cố thương hiệu
+
+**Chiến lược phân bổ:**
+- **60%** mua và nắm giữ dài hạn (3-5 năm)
+- **30%** DCA (Dollar Cost Averaging) hàng quý
+- **10%** dự phòng mua thêm khi điều chỉnh
+
+**Mục tiêu giá:**
+- **Ngắn hạn (12 tháng):** 95.000 - 105.000 VNĐ
+- **Dài hạn (3-5 năm):** 120.000 - 150.000 VNĐ
+
+**Catalysts tích cực:**
+- Tăng trưởng AI và chuyển đổi số toàn cầu
+- Mở rộng thị phần tại Mỹ, châu Âu
+- Phát triển các công nghệ mới: UAV, bán dẫn, đường sắt
+
+FPT là một trong những cổ phiếu công nghệ hàng đầu Việt Nam với nền tảng vững chắc và tầm nhìn dài hạn rõ ràng, phù hợp cho nhà đầu tư tìm kiếm tăng trưởng bền vững.

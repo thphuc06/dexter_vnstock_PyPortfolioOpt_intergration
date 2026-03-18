@@ -3,33 +3,6 @@ import { z } from 'zod';
 import { callVnstockApi } from './api.js';
 import { formatToolResult } from '../types.js';
 
-export const getVnstockCompany = new DynamicStructuredTool({
-  name: 'get_vnstock_company',
-  description:
-    'Get company profile and overview information for a Vietnamese company (company name, industry, business description, etc.)',
-  schema: z.object({
-    ticker: z
-      .string()
-      .describe(
-        "Vietnamese stock ticker symbol (e.g., 'FPT' for FPT Corporation, 'VIC' for Vingroup)"
-      ),
-  }),
-  func: async (input) => {
-    try {
-      const { data, url } = await callVnstockApi(
-        `/company/${input.ticker}`,
-        {},
-        { cacheable: true } // Company profile data can be cached
-      );
-      return formatToolResult(data, [url]);
-    } catch (error) {
-      throw new Error(
-        `Failed to fetch company profile for ${input.ticker}: ${error instanceof Error ? error.message : String(error)}`
-      );
-    }
-  },
-});
-
 export const getVnstockIndex = new DynamicStructuredTool({
   name: 'get_vnstock_index',
   description:
