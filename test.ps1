@@ -1,9 +1,9 @@
-$uri = "https://ne9zdvaamm.us-east-1.awsapprunner.com/ask"
 $uri = "http://localhost:3000/ask"
+$uri = "https://ne9zdvaamm.us-east-1.awsapprunner.com/ask"
 $headers = @{ "Content-Type" = "application/json; charset=utf-8" }
 
 $question = @"
-Phân tích cổ phiếu FPT và đưa ra chiến lược đầu tư dài hạn
+Phân tích cổ phiếu VPB, BID, AKL và đưa ra chiến lược đầu tư dài hạn
 "@
 
 [System.Console]::OutputEncoding = [System.Text.Encoding]::UTF8

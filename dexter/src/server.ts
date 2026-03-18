@@ -68,7 +68,7 @@ async function handleAsk(request: Request): Promise<Response> {
       query: question,
       model,
       modelProvider,
-      maxIterations: 5,
+      maxIterations: 10,
     });
 
     return jsonResponse({ answer, success: true } as SuccessResponse);
