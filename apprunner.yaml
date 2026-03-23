@@ -58,6 +58,6 @@ run:
     - name: DEXTER_ADVISORY_GEMINI_NLG_ENABLED
       value: "true"
     - name: DEXTER_ADVISORY_GEMINI_NLG_MODEL
-      value: "bedrock:anthropic.claude-3-haiku-20240307-v1:0"
+      value: "bedrock:us.anthropic.claude-sonnet-4-20250514-v1:0"
     - name: DEXTER_ADVISORY_DEFAULT_SYMBOLS
       value: "VCB,VIC,HPG,VNM,FPT,ACB,TCB,MBB,GAS,MSN"

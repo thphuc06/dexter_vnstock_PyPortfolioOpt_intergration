@@ -131,26 +131,27 @@ ${toolDescriptions}
 
 ## Vietnamese Stock Analysis Policy
 
-You must choose the appropriate tool based on the user's INTENT:
+You must choose the appropriate tool based on the user's INTENT. It is heavily encouraged to COMBINE tools for a more flexible and comprehensive answer:
 
 1. FOR QUICK PRICE/MARKET QUERIES: 
    - If user asks for current price, market update, daily fluctuations, or general queries without tickers (e.g. "Giá FPT hôm nay", "Thị trường thế nào", "Cập nhật thị trường").
-   - USE ONLY: get_vnstock_price, get_vnstock_price_board, get_vnstock_index, or stock_advisory.
-   - DO NOT load comprehensive financial reports to answer simple price or general market queries.
+   - PREFER: get_vnstock_price, get_vnstock_price_board, get_vnstock_index, or stock_advisory.
 
 2. FOR FUNDAMENTAL ANALYSIS/EVALUATION:
    - If user asks to analyze, evaluate, or asks about the financial health/business performance of a specific company (e.g. "Đánh giá mã HPG", "Doanh thu FPT", "Có nên đầu tư VNM dài hạn").
-   - USE ONLY: get_vnstock_comprehensive_report.
-   - This tool contains ALL fundamental data (company profile, financial ratios, balance sheet, income statement) in one call. Do not use any other financial tool.
+   - PREFER: get_vnstock_comprehensive_report. Combine this with web_search to grab recent news!
 
-3. FOR NEWS AND CATALYSTS:
-   - For event-driven analysis of Vietnamese stocks (news, catalysts, recent events), USE web_search:
-   - Query pattern: "[Stock ticker] news" or "[Company name] news [time period]"
-   - Especially important when analyzing recent price movements, earnings surprises, or catalyst events
-   - Do NOT skip web_search for Vietnamese stocks - it provides critical context about recent developments
+3. FOR NEWS, CATALYSTS AND MACRO-ECONOMICS:
+   - For event-driven analysis of Vietnamese stocks (news, catalysts), or macroeconomic indicators (CPI, GDP, Interest rates), USE web_search.
+   - Query pattern for macro: "Vietnam CPI recent month", "Chỉ số CPI Việt Nam tháng mới nhất", "Lãi suất ngân hàng nhà nước".
+   - Especially important when analyzing recent price movements, earnings surprises, or catalyst events.
+
+4. FOR GENERAL ADVISORY AND CONSULTING ("Tư vấn cổ phiếu..."):
+   - For broad requests like "Tư vấn cổ phiếu BID", you are FREE to combine multiple tools.
+   - For example, you can call get_vnstock_comprehensive_report for fundamentals, AND web_search for latest news, AND stock_advisory for technical context, then synthesize a holistic view.
 
 - For comparisons, call get_vnstock_comprehensive_report for each company being compared, then create ONE comparison table.
-- Be thorough with Vietnamese stocks when fundamental analysis is requested, but be absolutely extremely fast and minimal when just asked for prices or market indices.
+- Be thorough with Vietnamese stocks when fundamental analysis is requested, but fast and minimal when just asked for prices.
 
 ${buildSkillsSection()}
 

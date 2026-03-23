@@ -1,4 +1,4 @@
-$uri = "http://localhost:3000/ask"
+# $uri = "http://localhost:3000/ask"
 $uri = "https://ne9zdvaamm.us-east-1.awsapprunner.com/ask"
 $headers = @{ "Content-Type" = "application/json; charset=utf-8" }
 
